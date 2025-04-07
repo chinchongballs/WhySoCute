@@ -17,18 +17,18 @@
       padding: 20px;
       color: #d63384;
     }
-    #pesan {
+    #info {
       text-align: center;
-      color: #444;
       font-size: 1.2rem;
-      margin: 10px 0;
+      margin-bottom: 10px;
+      color: #444;
     }
     #karakter {
       width: 80px;
       height: 80px;
       position: absolute;
       cursor: pointer;
-      background-image: url('https://cdn-icons-png.flaticon.com/512/616/616408.png'); /* 🐰 */
+      background-image: url('https://cdn-icons-png.flaticon.com/512/616/616408.png');
       background-size: cover;
       transition: top 0.3s, left 0.3s;
     }
@@ -42,8 +42,7 @@
 <body>
 
   <h1>Tangkap Aku Kalau Bisa! 🐇</h1>
-  <div id="pesan">Ayo klik aku~</div>
-
+  <div id="info">Score: <span id="score">0</span> — <span id="comment">Catch me if you can~</span></div>
   <div id="karakter"></div>
 
   <audio autoplay loop>
@@ -52,15 +51,22 @@
 
   <script>
     const karakter = document.getElementById("karakter");
-    const pesan = document.getElementById("pesan");
-    const messages = [
-      "Hehe dapet~",
-      "Cepet juga kamu~",
-      "Kamu serius ngejar aku ya?",
-      "Kalo beneran sayang, jangan lepasin 😳",
-      "Oke deh, kamu menang. Aku milikmu sekarang 💗"
+    const scoreDisplay = document.getElementById("score");
+    const comment = document.getElementById("comment");
+
+    let score = 0;
+    const comments = [
+      "Damn cuh, you really on sum smoke 🔥",
+      "Ayo chill, bunny got a family 💀",
+      "You built like a whole ops tracker 😈",
+      "Who hurt you bro? 😭",
+      "Ain’t no bunny safe when you around 😤",
+      "On crip you snappin rn 😮‍💨",
+      "That bunny owe you money or what? 💸",
+      "This feel personal cuh 👀",
+      "You catchin bodies not feelings 😶‍🌫️",
+      "Ayo FBI watching bro 👮‍♂️"
     ];
-    let clicked = 0;
 
     function moveKarakter() {
       const x = Math.random() * (window.innerWidth - 100);
@@ -70,13 +76,16 @@
     }
 
     karakter.onclick = () => {
-      pesan.innerText = messages[clicked] || "Kamu tetep ngejar ya 🥺";
-      clicked++;
+      score++;
+      scoreDisplay.innerText = score;
+      const randComment = comments[Math.floor(Math.random() * comments.length)];
+      comment.innerText = randComment;
     };
 
-    setInterval(moveKarakter, 1000);
+    setInterval(moveKarakter, 700);
     moveKarakter();
   </script>
 
 </body>
 </html>
+
